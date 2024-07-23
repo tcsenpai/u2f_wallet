@@ -16,7 +16,7 @@ def gen_from_data(data):
          wordlist = [w.strip() for w in f.readlines()]
     # Generating a seed from the binary data
     seed = []
-    for i in range(len(bindata)//11):
+    for i in range((len(bindata)//11)+1):
         index = int(bindata[11*i:11*(i+1)],2)
         seed.append(wordlist[index])
     return seed
