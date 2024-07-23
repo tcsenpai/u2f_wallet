@@ -2,8 +2,8 @@
 from fido2.hid import CtapHidDevice
 from fido2.client import Fido2Client, UserInteraction
 from getpass import getpass
-import libs.word_gen as word_gen
 import libs.cred_manager as cred_manager
+import libs.mem_gen as mem_gen  
 import hashlib
 import sys
 import os
@@ -92,8 +92,7 @@ if __name__ == "__main__":
     secret = result.extension_results["hmacGetSecret"]["output1"]
     print("[OK] Authenticated and secret retrieved")
 
-    mnemonic_words = word_gen.gen_from_data(secret)
-    mnemonic_string = " ".join(mnemonic_words)
+    mnemonic_string = mem_gen.gen_mnemonic(secret)
     print("\nALERT: This is your mnemonic seed. Keep it in a safe place. You will need it to recover your wallet.")
     print("If you lose it, you will lose access to your wallet. There is no way to recover it later.")
     print("Anyone with access to your mnemonic seed can recover your wallet. Keep it in a secure location.")
